@@ -29,7 +29,7 @@ return {
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
-      automatic_setup = true,
+      automatic_installation = true,
 
       -- You can provide additional configuration to the handlers,
       -- see mason-nvim-dap README for more information
@@ -79,10 +79,11 @@ return {
     vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    dap.listeners.before.event_terminated['dapui_config'] = function()
-      dapui.close()
-      os.execute 'killall -9 node'
-    end
+    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+    --dap.listeners.before.event_terminated['dapui_config'] = function()
+    --  dapui.close()
+    --  os.execute 'killall -9 node'
+    --end
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
