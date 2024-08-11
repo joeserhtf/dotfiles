@@ -24,10 +24,13 @@ font pango:MesloLGM Nerd Font Mono 10
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex-autostart --autostart --environment i3
 
-## Custom Starts
+## Custom Configs
 exec --no-startup-id picom
-exec_always --no-statup-id killall -9 polybar
+exec --no-startup-id xrandr --output HDMI-1-1 --auto --right-of eDP-1
+exec_always --no-statup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
+
+bindsym $mod+space exec --no-startup-id rofi -show combi
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -107,10 +110,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+#bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
