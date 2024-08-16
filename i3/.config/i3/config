@@ -31,6 +31,7 @@ exec_always --no-statup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 
 bindsym $mod+space exec --no-startup-id rofi -show combi
+bindsym $mod+p exec --no-startup-id flameshot gui
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
