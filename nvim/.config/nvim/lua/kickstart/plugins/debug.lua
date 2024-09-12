@@ -94,10 +94,10 @@ return {
       adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
     }
 
-    local js_based_languages = { 'typescript', 'javascript', 'typescriptreact' }
-    require('dap.ext.vscode').load_launchjs(
-      nil,
-      { ['node'] = js_based_languages, ['pwa-node'] = js_based_languages, ['chrome'] = js_based_languages, ['pwa-chrome'] = js_based_languages }
-    )
+    --local js_based_languages = { 'typescript', 'javascript', 'typescriptreact' }
+    -- require('dap.ext.vscode').load_launchjs(
+    -- nil,
+    --{ ['node'] = js_based_languages, ['pwa-node'] = js_based_languages, ['chrome'] = js_based_languages, ['pwa-chrome'] = js_based_languages }
+    --)
   end,
 }

@@ -80,6 +80,8 @@ source <(fzf --zsh)
 
 # User configuration
 
+path+=($HOME/Applications/flutter/bin/)
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -105,6 +107,4 @@ source <(fzf --zsh)
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
