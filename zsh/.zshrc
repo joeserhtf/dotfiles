@@ -81,6 +81,7 @@ source <(fzf --zsh)
 # User configuration
 
 path+=($HOME/Applications/flutter/bin/)
+path+=($HOME/Applications/Hyprshot/)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
