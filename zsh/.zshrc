@@ -82,6 +82,7 @@ source <(fzf --zsh)
 
 path+=($HOME/Applications/flutter/bin/)
 path+=($HOME/Applications/Hyprshot/)
+path+=($HOME/Applications/)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
