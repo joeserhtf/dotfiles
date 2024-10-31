@@ -81,8 +81,8 @@ source <(fzf --zsh)
 # User configuration
 
 path+=($HOME/Applications/flutter/bin/)
-path+=($HOME/Applications/Hyprshot/)
 path+=($HOME/Applications/)
+path+=($HOME/Applications/netExtenderClient/)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
