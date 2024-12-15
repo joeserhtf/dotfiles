@@ -1,7 +1,3 @@
--- debug.lua
---
--- Shows how to use the DAP plugin to debug your code.
---
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
@@ -12,6 +8,8 @@ return {
     -- Installs the debug adapters for you
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
+
+    'theHamsta/nvim-dap-virtual-text',
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
@@ -42,6 +40,10 @@ return {
         'delve',
         'js-debug-adapter',
       },
+    }
+
+    require('nvim-dap-virtual-text').setup {
+      commented = true,
     }
 
     -- Basic debugging keymaps, feel free to change to your liking!
@@ -79,11 +81,11 @@ return {
     vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-    --dap.listeners.before.event_terminated['dapui_config'] = function()
-    --  dapui.close()
-    --  os.execute 'killall -9 node'
-    --end
+    --dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+    dap.listeners.before.event_terminated['dapui_config'] = function()
+      --dapui.close()
+      --os.execute 'killall -9 node'
+    end
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
@@ -93,11 +95,5 @@ return {
       debugger_path = vim.fn.stdpath 'data' .. '/lazy/vscode-js-debug',
       adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
     }
-
-    --local js_based_languages = { 'typescript', 'javascript', 'typescriptreact' }
-    -- require('dap.ext.vscode').load_launchjs(
-    -- nil,
-    --{ ['node'] = js_based_languages, ['pwa-node'] = js_based_languages, ['chrome'] = js_based_languages, ['pwa-chrome'] = js_based_languages }
-    --)
   end,
 }

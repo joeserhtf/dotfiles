@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/joeser/.zsh/completions:"* ]]; then export FPATH="/home/joeser/.zsh/completions:$FPATH"; fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -83,6 +85,10 @@ source <(fzf --zsh)
 path+=($HOME/Applications/flutter/bin/)
 path+=($HOME/Applications/)
 path+=($HOME/Applications/netExtenderClient/)
+path+=($HOME/.pub-cache/bin/)
+
+export CHROME_EXECUTABLE=/usr/bin/chromium
+export JAVA_HOME=/home/joeser/Applications/jdk/jdk-17.0.13+11
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -110,3 +116,16 @@ path+=($HOME/Applications/netExtenderClient/)
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
+. "/home/joeser/.deno/env"
+# Initialize zsh completions (added by deno install script)
+autoload -Uz compinit
+compinit
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/joeser/.dart-cli-completion/zsh-config.zsh ]] && . /home/joeser/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
