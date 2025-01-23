@@ -13,11 +13,10 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
-    'mxsdev/nvim-dap-vscode-js',
     {
       'microsoft/vscode-js-debug',
       version = '1.x',
-      build = 'npm i && npm run compile vsDebugServerBundle && mv dist out',
+      build = 'npm i && npm run compile dapDebugServer',
     },
   },
   config = function()
@@ -63,6 +62,8 @@ return {
       -- Set icons to characters that are more likely to work in every terminal.
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
       controls = {
+        element = 'repl',
+        enabled = true,
         icons = {
           pause = '⏸',
           play = '▶',
@@ -81,19 +82,80 @@ return {
     vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    --dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-    dap.listeners.before.event_terminated['dapui_config'] = function()
-      --dapui.close()
-      --os.execute 'killall -9 node'
-    end
+    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+    -- dap.listeners.before.event_terminated['dapui_config'] = function()
+    --   --dapui.close()
+    -- end
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
     require('dap-go').setup()
 
-    require('dap-vscode-js').setup {
-      debugger_path = vim.fn.stdpath 'data' .. '/lazy/vscode-js-debug',
-      adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
+    dap.adapters['pwa-node'] = {
+      type = 'server',
+      host = 'localhost',
+      port = '${port}',
+      executable = {
+        command = 'node',
+        args = { vim.fn.stdpath 'data' .. '/lazy/vscode-js-debug' .. '/dist/src/dapDebugServer.js', '${port}' },
+      },
+    }
+
+    dap.adapters.dart = {
+      type = 'executable',
+      command = 'dart',
+      args = { 'debug_adapter' },
+      options = {
+        detached = false,
+      },
+    }
+
+    dap.adapters.flutter = {
+      type = 'executable',
+      command = 'flutter',
+      args = { 'debug_adapter' },
+      options = {
+        detached = false,
+      },
+    }
+
+    dap.configurations.dart = {
+      {
+        type = 'dart',
+        request = 'launch',
+        name = 'Launch dart',
+        dartSdkPath = '/home/joeser/Applications/flutter/bin/cache/dart-sdk/bin/dart', -- ensure this is correct
+        flutterSdkPath = '/home/joeser/Applications/flutter/bin/flutter', -- ensure this is correct
+        program = '${file}', -- ensure this is correct
+        cwd = '${workspaceFolder}',
+      },
+      {
+        type = 'flutter',
+        request = 'launch',
+        name = 'Launch flutter',
+        dartSdkPath = '/home/joeser/Applications/flutter/bin/cache/dart-sdk/bin/dart', -- ensure this is correct
+        flutterSdkPath = '/home/joeser/Applications/flutter/bin/flutter', -- ensure this is correct
+        program = '${workspaceFolder}/lib/main.dart', -- ensure this is correct
+        cwd = '${workspaceFolder}',
+      },
+    }
+
+    dap.adapters.lldb = {
+      type = 'executable',
+      command = '/usr/bin/lldb',
+      name = 'lldb',
+    }
+
+    dap.configurations.zig = {
+      {
+        name = 'Launch',
+        type = 'lldb',
+        request = 'launch',
+        program = '/home/joeser/Workspace/Joeser/zig_fut/zig-out/bin/zig_fut',
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
+      },
     }
   end,
 }
