@@ -84,11 +84,13 @@ source <(fzf --zsh)
 
 path+=($HOME/Applications/flutter/bin/)
 path+=($HOME/Applications/)
-path+=($HOME/Applications/netExtenderClient/)
+path+=($HOME/Applications/netextender/)
 path+=($HOME/.pub-cache/bin/)
+path+=($HOME/Applications/zig/)
 
 export CHROME_EXECUTABLE=/usr/bin/chromium
-export JAVA_HOME=/home/joeser/Applications/jdk/jdk-17.0.13+11
+export JAVA_HOME=/home/joeser/Applications/jdk-17.0.13
+export LLDB_USE_NATIVE_PDB_READER=yes
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
