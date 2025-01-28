@@ -1,1 +1,5 @@
 .config/nvim/lazy-lock.json
+
+onedrive
+
+!onedrive/.config/onedrive/sync_list
