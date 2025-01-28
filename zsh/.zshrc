@@ -87,6 +87,7 @@ path+=($HOME/Applications/)
 path+=($HOME/Applications/netextender/)
 path+=($HOME/.pub-cache/bin/)
 path+=($HOME/Applications/zig/)
+path+=($HOME/.local/bin/)
 
 export CHROME_EXECUTABLE=/usr/bin/chromium
 export JAVA_HOME=/home/joeser/Applications/jdk-17.0.13
@@ -131,3 +132,10 @@ export NVM_DIR="$HOME/.nvm"
 [[ -f /home/joeser/.dart-cli-completion/zsh-config.zsh ]] && . /home/joeser/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
+
+# bun completions
+[ -s "/home/joeser/.bun/_bun" ] && source "/home/joeser/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
