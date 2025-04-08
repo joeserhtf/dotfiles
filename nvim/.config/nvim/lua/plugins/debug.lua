@@ -127,8 +127,21 @@ return {
 
     dap.adapters.lldb = {
       type = 'executable',
-      command = '/usr/bin/lldb',
+      command = '/usr/bin/lldb-dap',
       name = 'lldb',
+    }
+
+    dap.configurations.zig = {
+      {
+        name = 'Launch',
+        type = 'lldb',
+        request = 'launch',
+        zig_exe_path = '/usr/bin/zig',
+        program = '${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}',
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
+      },
     }
   end,
 }

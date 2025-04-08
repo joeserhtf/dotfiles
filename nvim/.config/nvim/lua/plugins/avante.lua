@@ -3,8 +3,16 @@ return {
   event = 'VeryLazy',
   lazy = false,
   version = false,
-  opts = {},
   build = 'make',
+  opts = {
+    provider = 'claude',
+    mappings = {
+      submit = {
+        normal = '<CR>',
+        insert = '<C-S>',
+      },
+    },
+  },
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
     'stevearc/dressing.nvim',

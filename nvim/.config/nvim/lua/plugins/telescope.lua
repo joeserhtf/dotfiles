@@ -30,6 +30,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
       },
       config = function()
         require('nvim-tree').setup {}
+
+        vim.keymap.set('n', '<leader>t', ':NvimTreeFindFile<CR>', { desc = 'Open Tree on File', noremap = true })
+        vim.keymap.set('n', '<leader>te', ':NvimTreeToggle<CR>', { desc = 'Open/Close Tree' })
       end,
     },
   },
@@ -40,7 +43,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
       defaults = {
         file_ignore_patterns = {
           '.git/',
-          -- 	"node_modules",
+          'node_modules',
+          'bun.lock',
+          'package-lock',
         },
       },
       -- defaults = {
@@ -59,6 +64,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Enable telescope extensions, if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
+    pcall(require('telescope').load_extension 'flutter')
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'

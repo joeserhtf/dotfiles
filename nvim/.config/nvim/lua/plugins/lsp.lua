@@ -1,20 +1,21 @@
 return { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   dependencies = {
-    -- Automatically install LSPs and related tools to stdpath for neovim
-    { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+    -- Automatically install LSPs and related tools to stdpath for neovm
+    { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- Useful status updates for LSP.
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', opts = {} },
 
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
     { 'folke/neodev.nvim', opts = {} },
+
+    'saghen/blink.cmp',
   },
-  config = function()
+  config = function(_, opts)
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
@@ -99,7 +100,7 @@ return { -- LSP Configuration & Plugins
 
     -- LSP servers and clients are able to communicate to each other what features they support.
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    --capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities()) ]]
 
     -- Enable the following language servers
     --  Add any additional override configuration in the following tables. Available keys are:
@@ -109,12 +110,8 @@ return { -- LSP Configuration & Plugins
     --  - settings (table): Override the default settings passed when initializing the server.
     local servers = {
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-      zls = {
-        cmd = { '/home/joeser/Applications/zig/zls' },
-        settings = {
-          zig_exe_path = '/home/joeser/Applications/zig/zig',
-        },
-      },
+
+      zls = {},
 
       lua_ls = {
         settings = {
@@ -126,6 +123,14 @@ return { -- LSP Configuration & Plugins
         },
       },
     }
+
+    local lspconfig = require 'lspconfig'
+    for server, config in pairs(servers) do
+      -- passing config.capabilities to blink.cmp merges with the capabilities in your
+      -- `opts[server].capabilities, if you've defined it
+      capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+      lspconfig[server].setup(config)
+    end
 
     require('mason').setup()
 

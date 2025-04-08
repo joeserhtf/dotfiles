@@ -1,7 +1,9 @@
 return {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-  { -- Autocompletion
+  'mg979/vim-visual-multi', -- <C-N> to select multiple
+
+  --[[ { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
@@ -78,7 +80,7 @@ return {
         },
       }
     end,
-  },
+  }, ]]
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
