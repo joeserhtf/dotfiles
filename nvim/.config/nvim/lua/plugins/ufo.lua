@@ -19,6 +19,7 @@ return {
     end, { desc = 'Peek fold under cursor' })
 
     require('ufo').setup {
+      ---@diagnostic disable-next-line: unused-local
       provider_selector = function(bufnr, filetype, buftype)
         return { 'lsp', 'indent' }
       end,

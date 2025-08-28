@@ -110,7 +110,6 @@ return { -- LSP Configuration & Plugins
     --  - settings (table): Override the default settings passed when initializing the server.
     local servers = {
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-
       zls = {},
 
       lua_ls = {

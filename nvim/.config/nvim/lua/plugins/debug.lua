@@ -1,3 +1,12 @@
+local splitStr = function(inputstr)
+  split = '%s'
+  local t = {}
+  for str in string.gmatch(inputstr, '([^%s]+)') do
+    table.insert(t, str)
+  end
+  return t
+end
+
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
@@ -68,9 +77,14 @@ return {
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
+    local function terminateDap()
+      dap.terminate { all = true }
+      dapui.close()
+    end
+
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-    dap.listeners.before.event_exited['dapui_config'] = dapui.close
+    dap.listeners.before.event_terminated['dapui_config'] = terminateDap
+    dap.listeners.before.event_exited['dapui_config'] = terminateDap
 
     -- Install golang specific config
     require('dap-go').setup()
@@ -94,15 +108,6 @@ return {
       },
     }
 
-    dap.adapters.flutter = {
-      type = 'executable',
-      command = 'flutter',
-      args = { 'debug_adapter' },
-      options = {
-        detached = false,
-      },
-    }
-
     dap.configurations.dart = {
       {
         type = 'dart',
@@ -113,16 +118,12 @@ return {
         program = '${file}',
         cwd = '${workspaceFolder}',
       },
-      {
-        type = 'flutter',
-        request = 'launch',
-        name = 'Launch flutter',
-        dartSdkPath = '/home/joeser/Applications/flutter/bin/cache/dart-sdk/bin/dart',
-        flutterSdkPath = '/home/joeser/Applications/flutter/bin/flutter',
-        program = '${workspaceFolder}/lib/main.dart',
-        cwd = '${workspaceFolder}',
-        args = '-d linux',
-      },
+    }
+
+    dap.adapters.gdb = {
+      type = 'executable',
+      command = 'gdb',
+      args = { '--interpreter=dap', '--eval-command', 'set print pretty on' },
     }
 
     dap.adapters.lldb = {
@@ -131,17 +132,32 @@ return {
       name = 'lldb',
     }
 
-    dap.configurations.zig = {
-      {
-        name = 'Launch',
-        type = 'lldb',
-        request = 'launch',
-        zig_exe_path = '/usr/bin/zig',
-        program = '${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}',
-        cwd = '${workspaceFolder}',
-        stopOnEntry = false,
-        args = {},
-      },
-    }
+    -- dap.configurations.zig = {
+    --   {
+    --     name = 'Run Program',
+    --     type = 'lldb',
+    --     request = 'launch',
+    --     program = vim.fn.getcwd() .. '**/zig-out/bin/vk_zig',
+    --     --   function()
+    --     --   co = coroutine.running()
+    --     --   if co then
+    --     --     cb = function(item)
+    --     --       coroutine.resume(co, item)
+    --     --     end
+    --     --   end
+    --     --   cb = vim.schedule_wrap(cb)
+    --     --   vim.ui.select(vim.fn.glob(vim.fn.getcwd() .. '**/zig-out/**/*', false, true), {
+    --     --     prompt = 'Select executable',
+    --     --     kind = 'file',
+    --     --   }, cb)
+    --     --   return coroutine.yield()
+    --     -- end,
+    --     cwd = '${workspaceFolder}',
+    --     stopOnEntry = false,
+    --     args = function()
+    --       return splitStr(vim.fn.input 'Args: ')
+    --     end,
+    --   },
+    -- }
   end,
 }

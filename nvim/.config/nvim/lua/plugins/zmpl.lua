@@ -1,6 +1,4 @@
 return {
-  {
-    'jetzig-framework/zmpl.vim',
-    ft = { 'zmpl' },
-  },
+  'jetzig-framework/zmpl.vim',
+  ft = { 'zmpl' },
 }

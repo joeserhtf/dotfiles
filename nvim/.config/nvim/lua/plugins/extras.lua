@@ -1,9 +1,6 @@
 return {
-  -- Typr - A terminal WPM game
-  {
-    'nvzone/typr',
-    dependencies = 'nvzone/volt',
-    opts = {},
-    cmd = { 'Typr', 'TyprStats' },
-  },
+  'nvzone/typr',
+  dependencies = 'nvzone/volt',
+  opts = {},
+  cmd = { 'Typr', 'TyprStats' },
 }
