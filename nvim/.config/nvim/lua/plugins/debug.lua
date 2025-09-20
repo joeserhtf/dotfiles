@@ -132,6 +132,23 @@ return {
       name = 'lldb',
     }
 
+    dap.configurations.typescript = {
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Launch file',
+        runtimeExecutable = 'deno',
+        runtimeArgs = {
+          'run',
+          '--inspect-wait',
+          '--allow-all',
+        },
+        program = '${file}',
+        cwd = '${workspaceFolder}',
+        attachSimplePort = 9229,
+      },
+    }
+
     -- dap.configurations.zig = {
     --   {
     --     name = 'Run Program',

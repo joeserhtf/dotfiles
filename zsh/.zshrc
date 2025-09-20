@@ -72,3 +72,7 @@ if [[ ":$FPATH:" != *":/home/joeser/.zsh/completions:"* ]]; then export FPATH="/
 
 # opencode
 export PATH=/home/joeser/.opencode/bin:$PATH
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

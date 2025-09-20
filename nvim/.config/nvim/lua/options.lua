@@ -67,7 +67,8 @@ vim.opt.hlsearch = true
 -- Virtual lines
 vim.diagnostic.config {
   -- Use the default configuration
-  virtual_lines = true,
+  virtual_lines = false,
+  virtual_text = true,
 }
 
 -- Highlight when yanking (copying) text
