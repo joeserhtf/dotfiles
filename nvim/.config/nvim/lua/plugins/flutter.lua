@@ -6,7 +6,6 @@ return {
     'stevearc/dressing.nvim',
   },
   config = function()
-    print 'configuring flutter tools'
     require('flutter-tools').setup {
       debugger = {
         enabled = true,

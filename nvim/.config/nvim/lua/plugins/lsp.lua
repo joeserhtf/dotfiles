@@ -98,39 +98,6 @@ return { -- LSP Configuration & Plugins
       end,
     })
 
-    -- LSP servers and clients are able to communicate to each other what features they support.
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    --capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities()) ]]
-
-    -- Enable the following language servers
-    --  Add any additional override configuration in the following tables. Available keys are:
-    --  - cmd (table): Override the default command used to start the server
-    --  - filetypes (table): Override the default list of associated filetypes for the server
-    --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-    --  - settings (table): Override the default settings passed when initializing the server.
-    local servers = {
-      -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-      zls = {},
-
-      lua_ls = {
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = 'Replace',
-            },
-          },
-        },
-      },
-    }
-
-    local lspconfig = require 'lspconfig'
-    for server, config in pairs(servers) do
-      -- passing config.capabilities to blink.cmp merges with the capabilities in your
-      -- `opts[server].capabilities, if you've defined it
-      capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
-      lspconfig[server].setup(config)
-    end
-
     require('mason').setup()
 
     -- You can add other tools here that you want Mason to install
@@ -150,15 +117,15 @@ return { -- LSP Configuration & Plugins
       },
     }
 
-    lspconfig.denols.setup {
-      on_attach = on_attach,
-      root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
-    }
-
-    lspconfig.ts_ls.setup {
-      on_attach = on_attach,
-      root_dir = lspconfig.util.root_pattern 'package.json',
-      single_file_support = false,
-    }
+    -- lspconfig.denols.setup {
+    --   on_attach = on_attach,
+    --   root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
+    -- }
+    --
+    -- lspconfig.ts_ls.setup {
+    --   on_attach = on_attach,
+    --   root_dir = lspconfig.util.root_pattern 'package.json',
+    --   single_file_support = false,
+    -- }
   end,
 }
