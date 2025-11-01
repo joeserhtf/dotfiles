@@ -22,7 +22,6 @@ path+=($HOME/Applications/flutter/bin/)
 path+=($HOME/Applications/)
 path+=($HOME/.pub-cache/bin/)
 path+=($HOME/.local/bin/)
-path+=($HOME/Applications/zig/zig-x86_64-linux-0.15.1)
 
 # Turso
 export PATH="$PATH:/home/joeser/.turso"
