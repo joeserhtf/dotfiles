@@ -38,6 +38,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
           'node_modules',
           'bun.lock',
           'package-lock',
+          'windows',
+          'macos',
+          'ios',
+          'android',
+          'build',
+          'linux',
+          'web',
         },
       },
       -- defaults = {

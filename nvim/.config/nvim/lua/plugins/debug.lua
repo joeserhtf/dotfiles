@@ -1,12 +1,3 @@
-local splitStr = function(inputstr)
-  split = '%s'
-  local t = {}
-  for str in string.gmatch(inputstr, '([^%s]+)') do
-    table.insert(t, str)
-  end
-  return t
-end
-
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
