@@ -127,7 +127,7 @@ return {
       {
         type = 'pwa-node',
         request = 'launch',
-        name = 'Launch file',
+        name = 'Launch file Deno',
         runtimeExecutable = 'deno',
         runtimeArgs = {
           'run',

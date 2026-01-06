@@ -116,5 +116,23 @@ return { -- LSP Configuration & Plugins
         end,
       },
     }
+
+    -- Path to lua/lsp
+    local lsp_path = vim.fn.stdpath 'config' .. '/lsp'
+
+    vim.notify('Loading lua/lsp/*.lua', vim.log.levels.INFO)
+    -- Iterate files
+    for _, file in ipairs(vim.fn.readdir(lsp_path)) do
+      if file:sub(-4) == '.lua' and file ~= 'init.lua' then
+        local server = file:gsub('%.lua$', '')
+
+        -- Require the file
+        local path = vim.fn.stdpath 'config' .. '/lsp/' .. server .. '.lua'
+        local ok, config = pcall(dofile, path)
+        if ok and type(config) == 'table' then
+          vim.lsp.config(server, config)
+        end
+      end
+    end
   end,
 }

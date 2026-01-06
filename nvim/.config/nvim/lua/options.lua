@@ -16,6 +16,8 @@ vim.wo.wrap = false
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.textwidth = 120
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
