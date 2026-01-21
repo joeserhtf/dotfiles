@@ -35,6 +35,9 @@ export CHROME_EXECUTABLE=/usr/bin/chromium
 export JAVA_HOME=/home/joeser/Applications/jdk-17.0.13
 export LLDB_USE_NATIVE_PDB_READER=yes
 
+# Docker
+export DOCKER_BUILDKIT=1
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 
