@@ -25,10 +25,10 @@ path+=($HOME/.local/bin/)
 
 # Turso
 export PATH="$PATH:/home/joeser/.turso"
+# Shorebird
 export PATH="/home/joeser/.shorebird/bin:$PATH"
 # Go
 export PATH=$PATH:/usr/local/go/bin
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Varibles
 export CHROME_EXECUTABLE=/usr/bin/chromium
@@ -40,6 +40,7 @@ export DOCKER_BUILDKIT=1
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -74,7 +75,3 @@ if [[ ":$FPATH:" != *":/home/joeser/.zsh/completions:"* ]]; then export FPATH="/
 
 # opencode
 export PATH=/home/joeser/.opencode/bin:$PATH
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
