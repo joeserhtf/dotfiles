@@ -5,11 +5,11 @@ return {
   version = false,
   build = 'make',
   opts = {
-    provider = 'claude',
+    provider = 'copilot',
     mappings = {
       submit = {
         normal = '<CR>',
-        insert = '<C-S>',
+        insert = '<C-A>',
       },
     },
   },

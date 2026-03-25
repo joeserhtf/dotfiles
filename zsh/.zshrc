@@ -72,6 +72,3 @@ if [[ ":$FPATH:" != *":/home/joeser/.zsh/completions:"* ]]; then export FPATH="/
 
 . "$HOME/.local/bin/env"
 . "/home/joeser/.deno/env"
-
-# opencode
-export PATH=/home/joeser/.opencode/bin:$PATH
