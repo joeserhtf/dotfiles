@@ -43,6 +43,7 @@ hl.on("hyprland.start", function()
 	-- Default applications for workspaces
 	hl.exec_cmd("ghostty --command=tmux", { workspace = "1 silent" })
 	hl.exec_cmd("flatpak run app.zen_browser.zen", { workspace = "2 silent" })
+	hl.exec_cmd("snap run obsidian", { workspace = "4 silent" })
 	hl.exec_cmd("flatpak run com.rtosta.zapzap", { workspace = "6 silent" })
 	hl.exec_cmd("flatpak run org.telegram.desktop", { workspace = "6 silent" })
 	hl.exec_cmd("ghostty --command=btop", { workspace = "9 silent" })

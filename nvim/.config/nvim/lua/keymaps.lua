@@ -29,3 +29,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Keybinds middle navigation
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+-- Auto-yank visual selection to the system clipboard on mouse release
+vim.keymap.set('v', '<LeftRelease>', [["+ygv]], { silent = true, desc = '[P]Mouse select -> yank to system clipboard' })
+vim.keymap.set('v', '<2-LeftRelease>', [["+ygv]], { silent = true, desc = '[P]Mouse select (double) -> yank to system clipboard' })
