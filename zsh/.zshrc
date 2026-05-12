@@ -2,8 +2,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 export TERMINAL=kitty
 
-#bindkey -v
-
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
