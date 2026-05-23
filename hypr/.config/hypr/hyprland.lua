@@ -26,6 +26,8 @@ hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.env("GTK_IM_MODULE", "simple")
 
+hl.env("EDITOR", "nvim")
+
 -- Execute apps at launch
 hl.on("hyprland.start", function()
 	hl.exec_cmd("waybar && swaync && hypridle")
@@ -45,7 +47,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("flatpak run app.zen_browser.zen", { workspace = "2 silent" })
 	hl.exec_cmd("snap run obsidian", { workspace = "4 silent" })
 	hl.exec_cmd("flatpak run com.rtosta.zapzap", { workspace = "6 silent" })
-	hl.exec_cmd("flatpak run org.telegram.desktop", { workspace = "6 silent" })
 	hl.exec_cmd("ghostty --command=btop", { workspace = "9 silent" })
 end)
 
@@ -179,14 +180,11 @@ hl.bind(mainMod .. "+ V", function()
 	hl.exec_cmd("cliphist list | fuzzel --dmenu | cliphist decode | wl-copy")
 end)
 
--- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
 
--- Switch workspaces with mainMod + [0-9]
--- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
