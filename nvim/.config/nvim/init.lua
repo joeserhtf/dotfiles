@@ -1,3 +1,5 @@
+require('vim._core.ui2').enable {}
+
 require 'options'
 require 'keymaps'
 require 'macros'
@@ -22,7 +24,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 require('lazy').setup({
-  --{ import = 'plugins/lsp' },
   { import = 'plugins' },
 }, {
   ui = {
