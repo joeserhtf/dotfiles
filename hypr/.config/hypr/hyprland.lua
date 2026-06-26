@@ -45,8 +45,8 @@ hl.on("hyprland.start", function()
 	-- Default applications for workspaces
 	hl.exec_cmd("ghostty --command=tmux", { workspace = "1 silent" })
 	hl.exec_cmd("flatpak run app.zen_browser.zen", { workspace = "2 silent" })
-	hl.exec_cmd("snap run obsidian", { workspace = "4 silent" })
-	hl.exec_cmd("flatpak run com.rtosta.zapzap", { workspace = "6 silent" })
+	-- hl.exec_cmd("snap run obsidian", { workspace = "4 silent" })
+	-- hl.exec_cmd("flatpak run com.rtosta.zapzap", { workspace = "6 silent" })
 	hl.exec_cmd("ghostty --command=btop", { workspace = "9 silent" })
 end)
 
@@ -119,7 +119,7 @@ hl.config({
 	},
 
 	cursor = {
-		no_hardware_cursors = true,
+		no_hardware_cursors = 1,
 	},
 })
 
@@ -180,6 +180,7 @@ hl.bind(mainMod .. "+ V", function()
 	hl.exec_cmd("cliphist list | fuzzel --dmenu | cliphist decode | wl-copy")
 end)
 
+hl.get_windows()
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))

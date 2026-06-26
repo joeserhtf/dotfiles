@@ -70,3 +70,4 @@ if [[ ":$FPATH:" != *":/home/joeser/.zsh/completions:"* ]]; then export FPATH="/
 
 . "$HOME/.local/bin/env"
 . "/home/joeser/.deno/env"
+. "$HOME/export-esp.sh"
