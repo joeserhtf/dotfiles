@@ -1,6 +1,6 @@
 -- See https://wiki.hyprland.org/Configuring/Monitors/
-hl.monitor({ output = "eDP-1", mode = "1920x1080@144", position = "1920x0", scale = "1.25" })
 hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@144", position = "0x0", scale = "1" })
+hl.monitor({ output = "eDP-1", mode = "1920x1080@144", position = "1920x0", scale = "1.25" })
 
 -- Bind specific workspaces to monitors
 hl.workspace_rule({ workspace = "1", monitor = "HDMI-A-1", default = true })
@@ -25,12 +25,17 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.env("GTK_IM_MODULE", "simple")
+hl.env("WLR_NO_HARDWARE_CURSORS", 1)
+
+-- hl.env("LANG", "pt_BR.UTF-8")
+hl.env("LC_MEASUREMENT", "pt_BR.UTF-8")
 
 hl.env("EDITOR", "nvim")
 
 -- Execute apps at launch
 hl.on("hyprland.start", function()
-	hl.exec_cmd("waybar && swaync && hypridle")
+	-- hl.exec_cmd("waybar && swaync && hypridle")
+	hl.exec_cmd("ashell && swaync && hypridle")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("wl-paste --type text --watch cliphist store # Stores only text data")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store # Stores only image data")
