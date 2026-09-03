@@ -9,6 +9,7 @@ return {
     require('flutter-tools').setup {
       debugger = {
         enabled = true,
+        exception_breakpoints = {},
       },
       default_run_args = { flutter = { '--web-browser-flag "--disable-web-security"' } },
     }
