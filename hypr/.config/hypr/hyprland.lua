@@ -1,6 +1,13 @@
 -- See https://wiki.hyprland.org/Configuring/Monitors/
 hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@144", position = "0x0", scale = "1" })
-hl.monitor({ output = "eDP-1", mode = "1920x1080@144", position = "1920x0", scale = "1.25" })
+-- hl.monitor({ output = "eDP-1", mode = "1920x1080@144", position = "1920x0", scale = "1.25" })
+hl.monitor({
+	output = "eDP-1",
+	mode = "1080x1920@144",
+	position = "1920x0",
+	scale = "1.25",
+	transform = 3,
+})
 
 -- Bind specific workspaces to monitors
 hl.workspace_rule({ workspace = "1", monitor = "HDMI-A-1", default = true })
@@ -9,10 +16,15 @@ hl.workspace_rule({ workspace = "3", monitor = "HDMI-A-1" })
 hl.workspace_rule({ workspace = "4", monitor = "HDMI-A-1" })
 hl.workspace_rule({ workspace = "5", monitor = "HDMI-A-1" })
 
-hl.workspace_rule({ workspace = "6", monitor = "eDP-1" })
-hl.workspace_rule({ workspace = "7", monitor = "eDP-1" })
-hl.workspace_rule({ workspace = "8", monitor = "eDP-1" })
-hl.workspace_rule({ workspace = "9", monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1" })
+hl.workspace_rule({ workspace = "7", monitor = "HDMI-A-1" })
+hl.workspace_rule({ workspace = "8", monitor = "HDMI-A-1" })
+hl.workspace_rule({ workspace = "9", monitor = "HDMI-A-1" })
+
+-- hl.workspace_rule({ workspace = "6", monitor = "eDP-1" })
+-- hl.workspace_rule({ workspace = "7", monitor = "eDP-1" })
+-- hl.workspace_rule({ workspace = "8", monitor = "eDP-1" })
+-- hl.workspace_rule({ workspace = "9", monitor = "eDP-1" })
 
 -- Set programs that you use
 local terminal = "ghostty"
@@ -48,7 +60,7 @@ hl.on("hyprland.start", function()
 	)
 
 	-- Default applications for workspaces
-	hl.exec_cmd("ghostty --command=tmux", { workspace = "1 silent" })
+	-- hl.exec_cmd("ghostty --command=tmux", { workspace = "1 silent" })
 	hl.exec_cmd("ghostty --command=/home/joeser/.local/bin/herdr", { workspace = "1 silent" })
 	hl.exec_cmd("flatpak run app.zen_browser.zen", { workspace = "2 silent" })
 	-- hl.exec_cmd("snap run obsidian", { workspace = "4 silent" })
