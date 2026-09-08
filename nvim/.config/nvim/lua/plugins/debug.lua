@@ -133,6 +133,7 @@ return {
           'run',
           '--inspect-wait',
           '--allow-all',
+          '--unsafely-ignore-certificate-errors',
         },
         program = '${file}',
         cwd = '${workspaceFolder}',

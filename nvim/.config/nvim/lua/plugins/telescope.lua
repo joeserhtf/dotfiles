@@ -44,7 +44,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
           'android',
           'build',
           'linux',
-          'web',
+          -- '/web',
         },
       },
       -- defaults = {

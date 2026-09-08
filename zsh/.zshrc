@@ -15,7 +15,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+# --zsh
+# source <(fzf)
 
 # User configuration
 path+=($HOME/Applications/flutter/bin/)
@@ -71,4 +72,4 @@ if [[ ":$FPATH:" != *":/home/joeser/.zsh/completions:"* ]]; then export FPATH="/
 ## [/Completion]
 
 . "$HOME/.local/bin/env"
-. "/home/joeser/.deno/env"
+. "/root/.deno/env"

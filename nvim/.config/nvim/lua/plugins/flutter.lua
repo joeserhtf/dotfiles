@@ -10,6 +10,7 @@ return {
       debugger = {
         enabled = true,
       },
+      flutter_path = '/bin/dart',
       default_run_args = { flutter = { '--web-browser-flag "--disable-web-security"' } },
     }
   end,
