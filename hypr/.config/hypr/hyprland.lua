@@ -7,6 +7,8 @@ hl.monitor({
 	position = "1920x100",
 	scale = "1.25",
 	transform = 2,
+	-- keep windows out of the top strip covered by the wood piece
+	reserved = { top = 170 },
 })
 
 -- Bind specific workspaces to monitors
