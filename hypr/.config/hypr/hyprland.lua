@@ -47,17 +47,17 @@ hl.env("EDITOR", "nvim")
 -- Execute apps at launch
 hl.on("hyprland.start", function()
 	-- hl.exec_cmd("waybar && swaync && hypridle")
-	hl.exec_cmd("ashell && swaync && hypridle")
+	hl.exec_cmd("ashell")
+	hl.exec_cmd("swaync")
+	hl.exec_cmd("hypridle")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("wl-paste --type text --watch cliphist store # Stores only text data")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store # Stores only image data")
 	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	hl.exec_cmd("xdg-settings set default-web-browser app.zen_browser.zen.desktop")
 
-	-- Fix for ZapZap APP
-	hl.exec_cmd(
-		"flatpak override --user --filesystem=/usr/share/fonts:ro io.github.zapzap ; flatpak override --user--filesystem=/etc/fonts:ro io.github.zapzap ; flatpak override --reset io.github.zapzap"
-	)
+	-- Whatsapp
+	hl.exec_cmd("zapfast", { workspace = "3 silent" })
 
 	-- Default applications for workspaces
 	-- hl.exec_cmd("ghostty --command=tmux", { workspace = "1 silent" })

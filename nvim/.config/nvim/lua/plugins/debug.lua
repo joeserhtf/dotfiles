@@ -90,6 +90,23 @@ return {
       },
     }
 
+    -- Bun usa o protocolo de inspector do WebKit, então o pwa-node não serve.
+    -- Adapter gerado por ~/.config/nvim/scripts/bun-dap/build.sh
+    dap.adapters.bun = {
+      type = 'executable',
+      command = 'bun',
+      args = { vim.fn.stdpath 'data' .. '/bun-dap/bun-dap.js' },
+    }
+
+    local bun_launch_file = {
+      type = 'bun',
+      request = 'launch',
+      name = 'Launch file Bun',
+      program = '${file}',
+      cwd = '${workspaceFolder}',
+    }
+    dap.configurations.javascript = { bun_launch_file }
+
     dap.adapters.dart = {
       type = 'executable',
       command = 'dart',
@@ -124,6 +141,7 @@ return {
     }
 
     dap.configurations.typescript = {
+      bun_launch_file,
       {
         type = 'pwa-node',
         request = 'launch',
