@@ -72,3 +72,10 @@ if [[ ":$FPATH:" != *":/home/joeser/.zsh/completions:"* ]]; then export FPATH="/
 . "/home/joeser/.deno/env"
 # . "$HOME/export-esp.sh"
 alias esp-env='. "$HOME/export-esp.sh"'
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+
+# Emuladores Android (sem Android Studio)
+alias emu-tablet='emulator -avd Small_Tablet -no-boot-anim -no-audio -gpu host -memory 2048 -cores 2 >/dev/null 2>&1 &!'
+alias emu-leve='emulator -avd leve -no-boot-anim -no-audio -gpu host -cores 2 >/dev/null 2>&1 &!'
