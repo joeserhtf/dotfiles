@@ -1,15 +1,46 @@
 -- See https://wiki.hyprland.org/Configuring/Monitors/
-hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@144", position = "0x0", scale = "1" })
--- hl.monitor({ output = "eDP-1", mode = "1920x1080@144", position = "1920x0", scale = "1.25" })
-hl.monitor({
-	output = "eDP-1",
-	mode = "1920x1080@144",
-	position = "1920x100",
-	scale = "1.25",
-	transform = 2,
-	-- keep windows out of the top strip covered by the wood piece
-	reserved = { top = 170 },
-})
+local externalOutput = "HDMI-A-1"
+
+hl.monitor({ output = externalOutput, mode = "1920x1080@144", position = "0x0", scale = "1" })
+
+-- Docked: laptop sits upside down next to the external monitor.
+-- Undocked: plain upright laptop screen.
+local function apply_laptop_layout(docked)
+	if docked then
+		hl.monitor({
+			output = "eDP-1",
+			mode = "1920x1080@144",
+			position = "1920x100",
+			scale = "1.25",
+			transform = 2,
+			-- keep windows out of the top strip covered by the wood piece
+			reserved = { top = 170 },
+		})
+	else
+		hl.monitor({
+			output = "eDP-1",
+			mode = "1920x1080@144",
+			position = "0x0",
+			scale = "1.2",
+			transform = 0,
+			reserved = { top = 0 },
+		})
+	end
+end
+
+apply_laptop_layout(hl.get_monitor(externalOutput) ~= nil)
+
+hl.on("monitor.added", function(monitor)
+	if monitor and monitor.name == externalOutput then
+		apply_laptop_layout(true)
+	end
+end)
+
+hl.on("monitor.removed", function(monitor)
+	if monitor and monitor.name == externalOutput then
+		apply_laptop_layout(false)
+	end
+end)
 
 -- Bind specific workspaces to monitors
 hl.workspace_rule({ workspace = "1", monitor = "HDMI-A-1", default = true })
