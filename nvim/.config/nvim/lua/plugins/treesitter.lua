@@ -1,7 +1,17 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   lazy = false,
-  build = ':TSUpdate',
+  -- Only update parsers nvim-treesitter knows about. A plain `:TSUpdate` also picks up
+  -- parsers other plugins drop into site/parser (e.g. kulala.nvim's `kulala_http`) and
+  -- errors with 'Parser not available for language "kulala_http"'.
+  build = function()
+    local ts = require 'nvim-treesitter'
+    local known = require 'nvim-treesitter.parsers'
+    local langs = vim.tbl_filter(function(lang)
+      return known[lang] ~= nil
+    end, ts.get_installed())
+    ts.update(langs):wait(300000)
+  end,
   branch = 'main',
   -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
   config = function()

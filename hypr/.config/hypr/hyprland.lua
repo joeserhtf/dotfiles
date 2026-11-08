@@ -12,9 +12,9 @@ local function apply_laptop_layout(docked)
 			mode = "1920x1080@144",
 			position = "1920x100",
 			scale = "1.25",
-			transform = 2,
+			-- transform = 2,
 			-- keep windows out of the top strip covered by the wood piece
-			reserved = { top = 170 },
+			-- reserved = { top = 170 },
 		})
 	else
 		hl.monitor({
