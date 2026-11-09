@@ -12,6 +12,11 @@ return {
         exception_breakpoints = {},
       },
       default_run_args = { flutter = { '--web-browser-flag "--disable-web-security"' } },
+      lsp = {
+        -- The only `flutter` on PATH is the Windows SDK (/mnt/c/...), whose CRLF shell
+        -- scripts can't run in WSL. Use the Linux dart (/usr/bin/dart) for the analyzer.
+        cmd = { 'dart', 'language-server', '--protocol=lsp' },
+      },
     }
   end,
 }
