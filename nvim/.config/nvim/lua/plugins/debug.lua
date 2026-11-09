@@ -13,7 +13,8 @@ return {
     {
       'microsoft/vscode-js-debug',
       version = '1.x',
-      build = 'npm i --ignore-scripts && npm run compile dapDebugServer',
+      -- `npm i` rewrites package-lock.json; restore it so lazy.nvim can keep updating the repo
+      build = 'npm i --ignore-scripts && npm run compile dapDebugServer && git checkout -- package-lock.json',
     },
   },
   config = function()
